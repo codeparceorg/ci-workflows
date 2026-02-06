@@ -8,6 +8,17 @@ on:
       node-version:
         required: true
         type: string
+    secrets:
+      TERRAFORM_REPO_TOKEN:
+        required: true
+      ARM_CLIENT_ID:
+        required: true
+      ARM_CLIENT_SECRET:
+        required: true
+      ARM_TENANT_ID:
+        required: true
+      ARM_SUBSCRIPTION_ID:
+        required: true
 
 
 jobs:
@@ -15,3 +26,6 @@ jobs:
     uses: ./.github/workflows/node-build.yml
     with:
       node-version: ${{ inputs.node-version }}
+
+  azure-terraform:
+    uses: ./.github/workflows/deploy-azure-arquitecture.yml
