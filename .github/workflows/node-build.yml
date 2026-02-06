@@ -7,18 +7,21 @@ on:
       node-version:
         required: true
         type: string
+      config-path:
+        required: true
+        type: string
+    secrets:
+      personal_access_token: ${{ secrets.TERRAFORM_REPO_TOKEN }}
 
 jobs:
-  build-project:
+  node:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 
           
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
 
