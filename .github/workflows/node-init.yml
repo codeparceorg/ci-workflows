@@ -28,4 +28,4 @@ jobs:
       node-version: ${{ inputs.node-version }}
 
   azure-terraform:
-    uses: ./.github/workflows/deploy-azure-arquitecture.yml
+    uses: ./.github/workflows/az-arquitecture.yml
