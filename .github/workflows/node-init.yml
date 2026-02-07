@@ -1,6 +1,4 @@
 # .github/workflows/node-build.yml
-name: Entry node CI/CD workflow
-
 permissions:
   contents: read
 
