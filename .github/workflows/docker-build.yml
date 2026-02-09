@@ -27,7 +27,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: service-build
-          path: target/*.jar
+          path: app.jar
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
