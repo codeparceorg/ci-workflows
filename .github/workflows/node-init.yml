@@ -9,9 +9,8 @@ on:
         required: true
         type: string
 
-
 jobs:
-  build:
+  node:
     uses: ./.github/workflows/node-build.yml
     with:
       node-version: ${{ inputs.node-version }}
