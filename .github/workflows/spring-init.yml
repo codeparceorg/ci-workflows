@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/node-build.yml
+    uses: ./.github/workflows/spring-build.yml
     with:
       java-version: ${{ inputs.java-version }}
 
