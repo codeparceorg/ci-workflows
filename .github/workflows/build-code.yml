@@ -1,0 +1,21 @@
+# .github/workflows/build-code.yml
+name: Build code
+
+
+on:
+  workflow_call:
+
+
+jobs:
+  zip-code:
+    name: Zip Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Deploy Azure infrastructure
+        run: |
+          ls
