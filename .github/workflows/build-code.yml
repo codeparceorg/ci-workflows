@@ -49,18 +49,18 @@ jobs:
           name: file.zip
           path: function
 
+      - name: Clone terraform scripts repository
+        uses: actions/checkout@v4
+        with:
+          repository: codeparceorg/terraform-cloud
+          ref: gcp
+          token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
+          path: terraform-cloud
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v3
         with:
           version: '>= 363.0.0'
-
-      - name: Clone terraform scripts repository
-        uses: actions/checkout@v4
-        with:
-          repository: codeparce/terraform-cloud
-          ref: gcp
-          token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-          path: terraform-cloud
 
       - name: Push zip to bucket
         run: |
