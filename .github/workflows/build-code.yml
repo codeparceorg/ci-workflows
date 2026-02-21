@@ -23,7 +23,7 @@ jobs:
       - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: zip
+          name: file.zip
           path: function/functions.zip
           retention-days: 1
           
