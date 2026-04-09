@@ -8,21 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
-      APP_ENVIRONMENT: ${{ github.ref_name }}_${{ github.event.repository.name }}
     name: Node Build
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 
-
-      - name: Install Doppler CLI
-        uses: dopplerhq/cli-action@v3
-
-      - name: Run with secrets
-        run: |
-          doppler secrets download -p vault-codeparce -c "$APP_ENVIRONMENT" --no-file --format env -t "$DOPPLER_TOKEN" > .env 
 
       - uses: actions/setup-node@v4
         with:
