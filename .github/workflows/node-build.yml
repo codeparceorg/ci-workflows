@@ -24,6 +24,14 @@ jobs:
       - name: Install Doppler CLI
         uses: dopplerhq/cli-action@v3
 
+      - name: Debug token exists
+        run: |
+          if [ -z "$DOPPLER_TOKEN" ]; then
+            echo "TOKEN IS EMPTY"
+          else
+            echo "TOKEN EXISTS: ${DOPPLER_TOKEN:0:10}..."  # Solo muestra primeros 10 chars
+          fi
+          
       - name: Run with secrets
         run: |
           doppler secrets download -p vault-codeparce -c "$DOPPLER_CONFIG" --no-file --format env -t "$DOPPLER_TOKEN" > .env && cat .env
