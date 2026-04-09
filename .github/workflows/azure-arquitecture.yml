@@ -41,6 +41,9 @@ jobs:
         with:
           terraform_version: 1.6.6
 
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v3
+        
       - name: Deploy Azure infrastructure
         run: |
           cd azure-terraform/5-container-app
