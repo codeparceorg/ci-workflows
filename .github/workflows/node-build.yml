@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
       DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+      DOPPLER_CONFIG: ${{ github.ref_name }}_${{ github.event.repository.name }}
     name: Node Build
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
 
       - name: Run with secrets
         run: |
-          doppler secrets download -p vault-codeparce -c $GITHUB_REF_NAME_$GITHUB_REPOSITORY_NAME --no-file --format env > .env || cat .env
+          doppler secrets download -p vault-codeparce -c "$DOPPLER_CONFIG" --no-file --format env > .env || cat .env
 
       - uses: actions/setup-node@v4
         with:
