@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-      DOPPLER_CONFIG: ${{ github.ref_name }}_${{ github.event.repository.name }}
+      APP_ENVIRONMENT: ${{ github.ref_name }}_${{ github.event.repository.name }}
       DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
     steps:
       - name: Checkout code
