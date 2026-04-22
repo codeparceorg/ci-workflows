@@ -23,10 +23,10 @@ jobs:
       - name: Clone terraform scripts repository
         uses: actions/checkout@v4
         with:
-          repository: codeparce/azure-terraform
-          ref: azure
+          repository: codeparce/terraform-cloud
+          ref: main
           token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-          path: azure-terraform
+          path: terraform-cloud
 
       - name: Install Doppler CLI
         uses: dopplerhq/cli-action@v3
@@ -38,12 +38,12 @@ jobs:
 
       - name: Deploy Azure infrastructure
         run: |
-          cd azure-terraform/2-static-web-app
+          cd terraform-cloud/azure/2-static-web-app
           bash main.sh
 
       - name: Upload Static Web App secrets artifact
         uses: actions/upload-artifact@v4
         with:
           name: static-web-app-json
-          path: azure-terraform/2-static-web-app/secret
+          path: terraform-cloud/azure/2-static-web-app/secret
           retention-days: 1
