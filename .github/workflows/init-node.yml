@@ -9,16 +9,16 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/ci/node-build.yml
+    uses: ./.github/workflows/ci-build-node.yml
     with:
       node-version: ${{ inputs.node-version }}
     secrets: inherit
 
   infra:
-    uses: ./.github/workflows/infra/azure-arq.yml
+    uses: ./.github/workflows/infra-az-swa.yml
     secrets: inherit
 
   deploy:
-    uses: ./.github/workflows/cd/swa.yml
+    uses: ./.github/workflows/cd-az-swa.yml
     needs: [build, infra]
     secrets: inherit
