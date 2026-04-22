@@ -1,0 +1,42 @@
+name: Build node project
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+      doppler-project:
+        required: true
+        type: string
+    secrets:
+      DOPPLER_TOKEN:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Load secrets
+        uses: ./.github/actions/doppler
+        with:
+          doppler-token: ${{ secrets.DOPPLER_TOKEN }}
+          doppler-project: ${{ inputs.doppler-project }}
+
+      - name: Setup Node
+        uses: ./.github/actions/node/setup
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install dependencies
+        uses: ./.github/actions/node/install
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Build
+        uses: ./.github/actions/node/build

@@ -1,0 +1,24 @@
+name: Fullstack Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  build:
+    uses: ./.github/workflows/ci/node-build.yml
+    with:
+      node-version: ${{ inputs.node-version }}
+    secrets: inherit
+
+  infra:
+    uses: ./.github/workflows/infra/azure-terraform.yml
+    secrets: inherit
+
+  deploy:
+    uses: ./.github/workflows/cd/azure-deploy.yml
+    needs: [build, infra]
+    secrets: inherit

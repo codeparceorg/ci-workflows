@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 0 
           
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: ./.github/actions/node/setup
         with:
-          node-version: 24
+          node-version: ${{ inputs.node-version }}
 
       - name: Download build artifact
         uses: actions/download-artifact@v4

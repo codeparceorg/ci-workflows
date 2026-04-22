@@ -1,0 +1,12 @@
+name: Node setup
+
+inputs:
+  node-version:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  
+    - run: npm i
+      shell: bash
