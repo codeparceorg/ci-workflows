@@ -23,20 +23,20 @@ jobs:
           fetch-depth: 0 
 
       - name: Load secrets
-        uses: ./.github/actions/doppler
+        uses: codeparce/ci-workflows/.github/actions/doppler
         with:
           doppler-token: ${{ secrets.DOPPLER_TOKEN }}
           doppler-project: ${{ inputs.doppler-project }}
 
       - name: Setup Node
-        uses: ./.github/actions/node/setup
+        uses: codeparce/ci-workflows/.github/actions/doppler@v1
         with:
           node-version: ${{ inputs.node-version }}
 
       - name: Install dependencies
-        uses: ./.github/actions/node/install
+        uses: codeparce/ci-workflows/.github/actions/node/install
         with:
           node-version: ${{ inputs.node-version }}
 
       - name: Build
-        uses: ./.github/actions/node/build
+        uses: codeparce/ci-workflows/.github/actions/node/build
