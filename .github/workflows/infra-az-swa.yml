@@ -7,8 +7,8 @@ on:
 
 
 jobs:
-  deploy-azure-arquitecture:
-    name: Arquitecture
+  deploy-az-arq:
+    name: arquitecture
     runs-on: ubuntu-latest
     env:
       GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}

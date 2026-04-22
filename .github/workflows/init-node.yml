@@ -21,5 +21,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/cd-az-swa.yml
+    with:
+      node-version: ${{ inputs.node-version }}
     needs: [build, infra]
     secrets: inherit
