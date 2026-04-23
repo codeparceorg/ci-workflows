@@ -4,7 +4,8 @@ on:
   workflow_call:
     inputs:
       node-version:
-        required: true
+        default: '24'
+        required: false
         type: string
       doppler-project:
         required: true
@@ -30,11 +31,6 @@ jobs:
 
       - name: Setup Node
         uses: codeparce/ci-workflows/.github/actions/node/setup@v1
-        with:
-          node-version: ${{ inputs.node-version }}
-
-      - name: Install dependencies
-        uses: codeparce/ci-workflows/.github/actions/node/install@v1
         with:
           node-version: ${{ inputs.node-version }}
 

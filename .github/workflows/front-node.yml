@@ -1,27 +1,22 @@
-name: Fullstack Pipeline
 
-on:
-  workflow_call:
-    inputs:
-      node-version:
-        required: true
-        type: string
 
-jobs:
+
+
   build:
     uses: ./.github/workflows/ci-build-node.yml
     with:
-      node-version: ${{ inputs.node-version }}
       doppler-project: vault-codeparce
     secrets: inherit
 
   infra:
+    if: ${{ inputs.stack == 'front' }}
     uses: ./.github/workflows/infra-az-swa.yml
     secrets: inherit
 
   deploy:
+    if: ${{ inputs.stack == 'front' }}
     uses: ./.github/workflows/cd-az-swa.yml
     with:
-      node-version: ${{ inputs.node-version }}
+      node-version: 24
     needs: [build, infra]
     secrets: inherit

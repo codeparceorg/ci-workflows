@@ -2,7 +2,8 @@ name: Node setup
 
 inputs:
   node-version:
-    required: true
+    default: '24'
+    type: string
 
 runs:
   using: "composite"
