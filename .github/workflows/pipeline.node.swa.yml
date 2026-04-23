@@ -18,8 +18,8 @@ jobs:
   infra:
     uses: ./.github/workflows/infra.tf.yml
     with:
-      cloud: ${{ inputs.cloud }}
       tf-directory: 2-static-web-app
+      cloud: ${{ inputs.cloud }}
     secrets: inherit
 
   deploy:

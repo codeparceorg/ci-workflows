@@ -3,12 +3,13 @@ name: Deploy to Azure Arquitecture
 
 on:
   workflow_call:
-    tf-directory:
-      required: true
-      type: string
-    cloud:
-      required: true
-      type: string
+    inputs:
+      tf-directory:
+        required: true
+        type: string
+      cloud:
+        required: true
+        type: string
 
 jobs:
   terraform:
