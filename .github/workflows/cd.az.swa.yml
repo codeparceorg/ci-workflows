@@ -37,7 +37,14 @@ jobs:
           path: secret
 
       - name: Install SWA CLI
-        run: npm install -g @azure/static-web-apps-cli && ls -la 
+        run: npm install -g @azure/static-web-apps-cli
+
+      - name: Debug info
+        run: | 
+          ls -la 
+          echo "ENV_NAME=$ENV_NAME"
+          echo "API_KEY length: ${#API_KEY}"
+          ls -la ./dist
 
       - name: Deploy Static Web App
         run: |

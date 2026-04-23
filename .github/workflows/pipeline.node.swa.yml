@@ -23,7 +23,7 @@ jobs:
     secrets: inherit
 
   deploy:
-    uses: ./.github/workflows/cd-az-swa.yml
+    uses: ./.github/workflows/cd.az.swa.yml
     with:
       config-path: secret
       artifact-path: dist
