@@ -17,30 +17,15 @@ jobs:
     with:
       doppler-project: vault-codeparce
     secrets: inherit
-
-  infra_front:
-    if: ${{ inputs.stack == 'front' }}
-    uses: ./.github/workflows/infra-az-swa.yml
-    secrets: inherit
-
-  deploy_front:
-    if: ${{ inputs.stack == 'front' }}
-    needs: [build, infra_front]
-    uses: ./.github/workflows/cd-az-swa.yml
-    with:
-      node-version: 24
-    secrets: inherit
-
-  publish_back:
-    if: ${{ inputs.stack == 'back' }}
+    
+  publish:
     needs: build
     uses: ./.github/workflows/ci-docker.yml
     with:
       target: dist
     secrets: inherit
 
-  infra_back:
-    if: ${{ inputs.stack == 'back' }}
-    needs: publish_back
+  infra:
+    needs: publish
     uses: ./.github/workflows/infra-az-cae.yml
     secrets: inherit
