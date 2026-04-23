@@ -37,7 +37,7 @@ jobs:
           path: secret
 
       - name: Install SWA CLI
-        run: npm install -g @azure/static-web-apps-cli
+        run: npm install -g @azure/static-web-apps-cli && ls -la 
 
       - name: Deploy Static Web App
         run: |
