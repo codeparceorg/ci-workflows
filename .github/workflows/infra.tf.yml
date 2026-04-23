@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy infrastructure
-        uses: codeparce/ci-workflows/actions/terraform@v1
+        uses: codeparce/ci-workflows/.github/actions/terraform@v1
         with:
           cloud: ${{ inputs.cloud }}
           tf-directory: ${{ inputs.tf-directory }}
