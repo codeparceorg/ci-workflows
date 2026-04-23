@@ -5,12 +5,15 @@ description: Clona terraform-cloud y aplica infraestructura en Azure
 inputs:
   cloud:
     description: "Cloud provider (azure, aws, gcp)"
+    type: string
     required: true
   tf-directory:
     description: "Subdirectorio dentro de terraform-cloud/azure/"
+    type: string
     required: true
   personal-access-token:
     description: "GitHub PAT para clonar repo privado"
+    type: string
     required: true
   docker-account-name:
     required: false
