@@ -24,6 +24,7 @@ jobs:
 
       - name: Setup cloud environment
         uses: codeparce/ci-workflows/.github/actions/azure/setup@v1
+        secrets: inherit
         
       - name: Deploy Azure infrastructure
         run: |
