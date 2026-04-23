@@ -25,6 +25,7 @@ jobs:
   deploy:
     uses: ./.github/workflows/cd.az.swa.yml
     with:
+      swa_key: ${{ needs.infra.outputs.swa_key }}
       config-path: secret
       artifact-path: dist
     needs: [build, infra]

@@ -10,6 +10,9 @@ on:
       artifact-path:
         type: string
         required: true
+      swa_key:
+        type: string
+        required: true
 
 jobs:
   deploy-az-swa:
@@ -32,25 +35,22 @@ jobs:
           name: web-build
           path: dist
 
-      - name: Download config
-        uses: actions/download-artifact@v4
-        with:
-          name: static-web-app-json
-          path: secret
+      # - name: Download config
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: static-web-app-json
+      #     path: secret
 
       - name: Install SWA CLI
         run: npm install -g @azure/static-web-apps-cli
 
-      - name: Debug info
-        run: | 
-          ls -la 
-          echo "ENV_NAME=$ENV_NAME"
-          cat ./secret/static-web-app-json.json
-          ls -la ./dist
+      # - name: Debug info
+      #   run: | 
+      #     ls -la 
+      #     echo "ENV_NAME=$ENV_NAME"
+      #     cat ./secret/static-web-app-json.json
+      #     ls -la ./dist
 
       - name: Deploy Static Web App
         run: |
-          API_KEY=$(jq -r '.properties.apiKey' ./secret/static-web-app-json.json)
-          echo "API_KEY=$API_KEY"
-          
-          swa deploy ./dist --deployment-token $API_KEY --env $ENV_NAME
+          swa deploy ./dist --deployment-token ${{ inputs.swa_key }} --env $ENV_NAME

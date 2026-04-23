@@ -15,6 +15,8 @@ jobs:
   terraform:
     name: Arquitecture
     timeout-minutes: 4
+    outputs:
+      swa_key: ${{ steps.get_key.outputs.swa_key }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,10 +31,17 @@ jobs:
           docker-access-token: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           doppler-token: ${{ secrets.DOPPLER_TOKEN }}
 
-      - name: Upload Static Web App secrets artifact
+      # - name: Upload Static Web App secrets artifact
+      #   if: ${{ inputs.tf-directory == '2-static-web-app' }}
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: static-web-app-json
+      #     path: terraform-cloud/azure/2-static-web-app/secret
+      #     retention-days: 1
+
+      - id: get_key
         if: ${{ inputs.tf-directory == '2-static-web-app' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: static-web-app-json
-          path: terraform-cloud/azure/2-static-web-app/secret
-          retention-days: 1
+        run: |
+          API_KEY=$(jq -r '.properties.apiKey' terraform-cloud/azure/2-static-web-app/secret/static-web-app-json.json)
+
+          echo "$API_KEY" >> $GITHUB_OUTPUT
