@@ -18,7 +18,7 @@ on:
 jobs:
   terraform:
     name: Arquitecture
-    timeout-minutes: 4
+    #timeout-minutes: 4
     outputs:
       swa_key: ${{ steps.get_key.outputs.swa_key }}
     runs-on: ubuntu-latest
