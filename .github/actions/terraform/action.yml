@@ -33,6 +33,12 @@ runs:
     - name: Install Doppler CLI
       uses: dopplerhq/cli-action@v3
 
+    - name: Cache Terraform plugins
+      uses: actions/cache@v3
+      with:
+        path: ~/.terraform.d/plugin-cache
+        key: ${{ runner.os }}-terraform-${{ hashFiles('**/*.tf') }}
+
     - name: Clone terraform scripts repository
       uses: actions/checkout@v4
       with:
